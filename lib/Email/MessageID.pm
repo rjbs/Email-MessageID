@@ -1,9 +1,8 @@
 package Email::MessageID;
-# $Id: MessageID.pm,v 1.3 2004/12/23 02:01:43 cwest Exp $
 use strict;
 
 use vars qw[$VERSION];
-$VERSION = '1.31';
+$VERSION = '1.32';
 
 use Email::Address;
 

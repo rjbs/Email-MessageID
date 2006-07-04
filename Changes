@@ -1,0 +1,16 @@
+1.32    2006-07-03
+
+  - Fixed version required for Sys::Hostname (thanks BARBIE)
+  - plan tests (for compat with older harnesses)
+
+1.31    2004-12-22
+
+  - Stopped using Time::HiRes. Instead, we generate a pseudo-
+    random string.
+  - Cache user portions of the address to ensure uniqueness.
+  - Add purge_users() method, undocumented currently. Experimental.
+
+1.2    2004-09-27
+
+  - INCOMPATIBLE: Removed trigger code, just subclass to override behaviour.
+
