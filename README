@@ -1,0 +1,44 @@
+NAME
+    Email::MessageID - Generate world unique message-ids.
+
+SYNOPSIS
+      use Email::MessageID;
+
+      my $mid = Email::MessageID->new;
+
+      print "Message-ID: $mid\x0A\x0D";
+
+DESCRIPTION
+    Message-ids are optional, but highly recommended, headers that identify
+    a message uniquely. This software generates a unique message-id.
+
+  Methods
+    new
+          my $mid = Email::MessageID->new;
+
+          my $new_mid = Email::MessageID->new( host => $myhost );
+
+        This class method constructs an Email::Address object containing a
+        unique message-id. You may specify custom "host" and "user"
+        parameters.
+
+        By default, the "host" is generated from "Sys::Hostname::hostname".
+
+        By default, the "user" is generated using "Time::HiRes"'s
+        "gettimeofday" and the process ID.
+
+        Using these values we have the ability to ensure world uniqueness
+        down to a specific process running on a specific host, and the exact
+        time down to six digits of microsecond precision.
+
+SEE ALSO
+    Email::Address, Time::HiRes, Sys::Hostname, perl.
+
+AUTHOR
+    Casey West, <casey@geeknest.com>.
+
+COPYRIGHT
+      Copyright (c) 2004 Casey West.  All rights reserved.
+      This module is free software; you can redistribute it and/or modify it
+      under the same terms as Perl itself.
+

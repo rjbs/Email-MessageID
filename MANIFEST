@@ -1,0 +1,8 @@
+Changes
+lib/Email/MessageID.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+t/defined.t
+t/unique.t
