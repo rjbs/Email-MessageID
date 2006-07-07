@@ -76,11 +76,12 @@ sub create_user {
     return $user;
 }
 
+my $unique_value = 0;
 sub _generate_string {
     my $length = 3;
     $length = rand(8) until $length > 3;
     
-    join '',map $CHARS[rand $#CHARS], 0 .. $length;
+    join '', (map $CHARS[rand $#CHARS], 0 .. $length), $unique_value++;
 }
 
 1;
