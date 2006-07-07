@@ -2,6 +2,7 @@
 
   - Fixed version required for Sys::Hostname (thanks BARBIE)
   - plan tests (for compat with older harnesses)
+  - keep a unique per pid part to fend of encroaching collisions (rjbs)
 
 1.31    2004-12-22
 
