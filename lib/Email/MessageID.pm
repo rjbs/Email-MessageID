@@ -2,7 +2,7 @@ package Email::MessageID;
 use strict;
 
 use vars qw[$VERSION];
-$VERSION = '1.32';
+$VERSION = '1.35';
 
 use Email::Address;
 
