@@ -1,0 +1,10 @@
+Changes
+lib/Email/MessageID.pm
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+README
+t/defined.t
+t/pod.t
+t/pod-coverage.t
+t/unique.t
