@@ -2,7 +2,7 @@ package Email::MessageID;
 use strict;
 
 use vars qw[$VERSION];
-$VERSION = '1.35';
+$VERSION = '1.351';
 
 use Email::Address;
 
@@ -108,6 +108,12 @@ __END__
 =head1 SEE ALSO
 
 L<Email::Address>, L<Time::HiRes>, L<Sys::Hostname>, L<perl>.
+
+=head1 PERL EMAIL PROJECT
+
+This module is maintained by the Perl Email Project.
+
+L<http://emailproject.perl.org/wiki/Email::MessageID>
 
 =head1 AUTHOR
 
