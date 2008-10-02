@@ -1,3 +1,8 @@
+1.400     2008-10-02
+          return MessageID objects, not Email::Address objects
+          this lets us add in_brackets
+          use Sys::Hostname::Long if available
+
 1.351     2007-03-22
           packaging improvements
 
