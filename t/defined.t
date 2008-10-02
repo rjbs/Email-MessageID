@@ -16,3 +16,5 @@ my $mid_both = Email::MessageID->new(user => $user, host => $host);
 isa_ok $mid_both, 'Email::Address';
 is $mid_both->user, $user, "$user set";
 is $mid_both->host, $host, "$host set";
+
+diag $mid_user->in_brackets;

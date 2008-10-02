@@ -1,10 +1,9 @@
-package Email::MessageID;
 use strict;
+use warnings;
+package Email::MessageID;
+use base 'Email::Address';
 
-use vars qw[$VERSION];
-$VERSION = '1.351';
-
-use Email::Address;
+our $VERSION = '1.400';
 
 =head1 NAME
 
@@ -23,11 +22,9 @@ Email::MessageID - Generate world unique message-ids.
 Message-ids are optional, but highly recommended, headers that identify a
 message uniquely. This software generates a unique message-id.
 
-=head2 Methods
+=head1 METHODS
 
-=over 4
-
-=item new
+=head2 new
 
   my $mid = Email::MessageID->new;
 
@@ -56,25 +53,33 @@ sub new {
         
     my $mid = join '@', @args{qw[user host]};
     
-    return Email::Address->new(undef, $mid);
+    my $addr = Email::Address->new(undef, $mid);
+
+    bless $addr => $class;
 }
 
-=item create_host
+=head2 create_host
 
-  my $domain_part = Email::Address->create_host;
+  my $domain_part = Email::MessageID->create_host;
 
 This method returns the domain part of the message-id.
 
 =cut
 
+my $_SYS_HOSTNAME_LONG;
 sub create_host {
-    require Sys::Hostname;
-    return Sys::Hostname::hostname();
+    unless (defined $_SYS_HOSTNAME_LONG) {
+      $_SYS_HOSTNAME_LONG = (eval { require Sys::Hostname::Long; 1 }) || 0;
+      require Sys::Hostname unless $_SYS_HOSTNAME_LONG;
+    }
+
+    return $_SYS_HOSTNAME_LONG ? Sys::Hostname::Long::hostname()
+                               : Sys::Hostname::hostname();
 }
 
-=item create_user
+=head2 create_user
 
-  my $local_part = Email::Address->create_user;
+  my $local_part = Email::MessageID->create_user;
 
 This method returns a unique local part for the message-id.  It includes some
 random data and some predictable data.
@@ -97,13 +102,30 @@ sub create_user {
     return $user;
 }
 
+=head2 in_brackets
+
+The Message-Id header must start and end with angle brackets.  This is a common
+mistake:
+
+  header => [
+    ...
+    'Message-Id' => Email::MessageID->new->as_string,
+  ],
+
+Instead, use C<in_brackets> to get the string inside angle brackets.
+
+=cut
+
+sub in_brackets {
+    my ($self) = @_;
+    return sprintf '<%s>', $self->as_string;
+}
+
 1;
 
 __END__
 
 =pod
-
-=back
 
 =head1 SEE ALSO
 
