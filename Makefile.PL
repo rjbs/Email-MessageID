@@ -12,4 +12,12 @@ WriteMakefile (
     'Test::More'     => '0.47',
   },
   VERSION_FROM  => 'lib/Email/MessageID.pm',
+  (eval { ExtUtils::MakeMaker->VERSION(6.46) }
+    ? (META_MERGE => {
+        resources => {
+          Repository => 'http://github.com/rjbs/email-messageid'
+        }
+      })
+    : ()
+  ),
 );

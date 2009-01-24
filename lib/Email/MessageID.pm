@@ -3,7 +3,7 @@ use warnings;
 package Email::MessageID;
 use base 'Email::Address';
 
-our $VERSION = '1.400';
+our $VERSION = '1.401';
 
 =head1 NAME
 
