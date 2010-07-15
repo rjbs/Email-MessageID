@@ -3,7 +3,7 @@ use warnings;
 package Email::MessageID;
 use base 'Email::Address';
 
-our $VERSION = '1.401';
+our $VERSION = '1.402';
 
 =head1 NAME
 
@@ -13,7 +13,7 @@ Email::MessageID - Generate world unique message-ids.
 
   use Email::MessageID;
 
-  my $mid = Email::MessageID->new;
+  my $mid = Email::MessageID->new->in_brackets;
 
   print "Message-ID: $mid\x0A\x0D";
 
@@ -104,15 +104,22 @@ sub create_user {
 
 =head2 in_brackets
 
-The Message-Id header must start and end with angle brackets.  This is a common
-mistake:
+When using Email::MessageID directly to populate the C<Message-ID> field, be
+sure to use C<in_brackets> to get the string inside angle brackets:
+
 
   header => [
     ...
-    'Message-Id' => Email::MessageID->new->as_string,
+    'Message-Id' => Email::MessageID->new->in_brackets,
   ],
 
-Instead, use C<in_brackets> to get the string inside angle brackets.
+Don't make this common mistake:
+
+  header => [
+    ...
+    'Message-Id' => Email::MessageID->new->as_string, # WRONG!
+  ],
+
 
 =cut
 

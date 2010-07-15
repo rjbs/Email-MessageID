@@ -1,5 +1,8 @@
 Revision history for Email-MessageID
 
+1.402     2010-07-14
+          improve documentation of in_brackets
+
 1.401     2009-01-22
           add repo location to metadata
 
