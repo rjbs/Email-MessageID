@@ -1,9 +1,10 @@
 use strict;
 use warnings;
 package Email::MessageID;
-use base 'Email::Address';
 
 our $VERSION = '1.402';
+
+use overload '""' => 'as_string', fallback => 1;
 
 =head1 NAME
 
@@ -47,15 +48,13 @@ six digits of microsecond precision.
 
 sub new {
     my ($class, %args) = @_;
-    
+
     $args{user} ||= $class->create_user;
     $args{host} ||= $class->create_host;
-        
-    my $mid = join '@', @args{qw[user host]};
-    
-    my $addr = Email::Address->new(undef, $mid);
 
-    bless $addr => $class;
+    my $str = "$args{user}\@$args{host}";
+
+    bless \$str => $class;
 }
 
 =head2 create_host
@@ -92,7 +91,7 @@ my $unique_value = 0;
 sub _generate_string {
     my $length = 3;
     $length = rand(8) until $length > 3;
-    
+
     join '', (map $CHARS[rand $#CHARS], 0 .. $length), $unique_value++;
 }
 
@@ -120,12 +119,26 @@ Don't make this common mistake:
     'Message-Id' => Email::MessageID->new->as_string, # WRONG!
   ],
 
+=for Pod::Coverage address as_string host user
 
 =cut
 
+sub user { (split /@/, ${ $_[0] }, 2)[0] }
+sub host { (split /@/, ${ $_[0] }, 2)[1] }
+
 sub in_brackets {
     my ($self) = @_;
-    return sprintf '<%s>', $self->as_string;
+    return "<$$self>";
+}
+
+sub address {
+    my ($self) = @_;
+    return "$$self";
+}
+
+sub as_string {
+    my ($self) = @_;
+    return "$$self";
 }
 
 1;
