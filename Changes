@@ -1,5 +1,11 @@
 Revision history for Email-MessageID
 
+{{$NEXT}}
+
+1.403     2013-08-13 09:11:47 America/New_York
+          [This might break your code]
+          no longer a subclass of Email::Address!
+
 1.402     2010-07-14
           improve documentation of in_brackets
 
