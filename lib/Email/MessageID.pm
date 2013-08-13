@@ -1,14 +1,9 @@
 use strict;
 use warnings;
 package Email::MessageID;
-
-our $VERSION = '1.402';
+# ABSTRACT: Generate world unique message-ids.
 
 use overload '""' => 'as_string', fallback => 1;
-
-=head1 NAME
-
-Email::MessageID - Generate world unique message-ids.
 
 =head1 SYNOPSIS
 
@@ -23,9 +18,7 @@ Email::MessageID - Generate world unique message-ids.
 Message-ids are optional, but highly recommended, headers that identify a
 message uniquely. This software generates a unique message-id.
 
-=head1 METHODS
-
-=head2 new
+=method new
 
   my $mid = Email::MessageID->new;
 
@@ -57,7 +50,7 @@ sub new {
     bless \$str => $class;
 }
 
-=head2 create_host
+=method create_host
 
   my $domain_part = Email::MessageID->create_host;
 
@@ -76,7 +69,7 @@ sub create_host {
                                : Sys::Hostname::hostname();
 }
 
-=head2 create_user
+=method create_user
 
   my $local_part = Email::MessageID->create_user;
 
@@ -101,11 +94,10 @@ sub create_user {
     return $user;
 }
 
-=head2 in_brackets
+=method in_brackets
 
 When using Email::MessageID directly to populate the C<Message-ID> field, be
 sure to use C<in_brackets> to get the string inside angle brackets:
-
 
   header => [
     ...
@@ -142,29 +134,3 @@ sub as_string {
 }
 
 1;
-
-__END__
-
-=pod
-
-=head1 SEE ALSO
-
-L<Email::Address>, L<Time::HiRes>, L<Sys::Hostname>, L<perl>.
-
-=head1 PERL EMAIL PROJECT
-
-This module is maintained by the Perl Email Project.
-
-L<http://emailproject.perl.org/wiki/Email::MessageID>
-
-=head1 AUTHOR
-
-Casey West, <F<casey@geeknest.com>>.
-
-=head1 COPYRIGHT
-
-  Copyright (c) 2004 Casey West.  All rights reserved.
-  This module is free software; you can redistribute it and/or modify it
-  under the same terms as Perl itself.
-
-=cut
