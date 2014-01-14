@@ -2,6 +2,9 @@ Revision history for Email-MessageID
 
 {{$NEXT}}
 
+1.404     2014-01-13 23:04:43-05:00 America/New_York
+          no changes since previous release
+
 1.403     2013-08-13 09:11:47 America/New_York
           [This might break your code]
           no longer a subclass of Email::Address!
