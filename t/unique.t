@@ -1,12 +1,8 @@
 use strict;
 use warnings;
-use Test::More tests => 2000;
+use Test::More tests => 1;
 use Email::MessageID;
 
-my %ids;
-for ( 1 .. (shift || 1000) ) {
-    my $mid = Email::MessageID->new;
-    isa_ok $mid, 'Email::MessageID';
-    ok ! exists $ids{$mid->address}, "$mid unique";
-    $ids{$mid->address}++;
-}
+my $n = shift || 1000;
+my %ids = map {; Email::MessageID->new->address => 1 } (1 .. $n);
+is(keys %ids, $n, "$n unique message ids");
