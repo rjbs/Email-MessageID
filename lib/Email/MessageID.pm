@@ -80,17 +80,16 @@ random data and some predictable data.
 
 my @CHARS = ('A'..'F','a'..'f',0..9);
 
-my $unique_value = 0;
-sub _generate_string {
-    my $length = 3;
-    $length = rand(8) until $length > 3;
-
-    join '', (map $CHARS[rand $#CHARS], 0 .. $length), $unique_value++;
-}
+my %uniq;
 
 sub create_user {
-    my $pseudo_random = $_[0]->_generate_string;
-    my $user = join '.', time, $pseudo_random, $$;
+    my $noise = join '',
+                map {; $CHARS[rand @CHARS] } (0 .. (3 + int rand 6));
+
+    my $t = time;
+    my $u = exists $uniq{$t} ? ++$uniq{$t} : (%uniq = ($t => 0))[1];
+
+    my $user = join '.', $t . $u, $noise, $$;
     return $user;
 }
 
