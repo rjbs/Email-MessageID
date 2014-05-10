@@ -2,6 +2,9 @@ Revision history for Email-MessageID
 
 {{$NEXT}}
 
+1.405     2014-05-09 22:28:43-04:00 America/New_York
+          minor tweaks to how message-id local part is generated
+
 1.404     2014-01-13 23:04:43-05:00 America/New_York
           no changes since previous release
 
