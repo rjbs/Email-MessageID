@@ -11,7 +11,7 @@ use overload '""' => 'as_string', fallback => 1;
 
   my $mid = Email::MessageID->new->in_brackets;
 
-  print "Message-ID: $mid\x0A\x0D";
+  print "Message-ID: $mid\x0D\x0A";
 
 =head1 DESCRIPTION
 
