@@ -1,6 +1,8 @@
 Revision history for Email-MessageID
 
 {{$NEXT}}
+        - when Sys::Hostname::Long is available, use hostname_long, not
+          hostname()
 
 1.405     2014-05-09 22:28:43-04:00 America/New_York
           minor tweaks to how message-id local part is generated

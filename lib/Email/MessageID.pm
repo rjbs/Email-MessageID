@@ -65,7 +65,7 @@ sub create_host {
       require Sys::Hostname unless $_SYS_HOSTNAME_LONG;
     }
 
-    return $_SYS_HOSTNAME_LONG ? Sys::Hostname::Long::hostname()
+    return $_SYS_HOSTNAME_LONG ? Sys::Hostname::Long::hostname_long()
                                : Sys::Hostname::hostname();
 }
 
