@@ -24,7 +24,7 @@ message uniquely. This software generates a unique message-id.
 
   my $new_mid = Email::MessageID->new( host => $myhost );
 
-This class method constructs an L<Email::Address|Email::Address> object
+This class method constructs an Email::MessageID object
 containing a unique message-id. You may specify custom C<host> and C<user>
 parameters.
 
